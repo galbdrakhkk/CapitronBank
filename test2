@@ -1,0 +1,31 @@
+Select * 
+FROM test2_v1
+order by 1;
+
+-- 1. Remove duplicates
+-- 2. Standardize the data
+-- 3. Null Values or blank values
+-- 4. Remove any columns
+
+-- Checking duplicates 
+
+SELECT *, 
+row_number() OVER(
+PARTITION BY Region, `Sales Person`,age ) as row_num
+FROM test2_v1;
+
+-- No duplicate
+
+-- minus age to plus
+Select * 
+FROM test2_v1
+WHERE age < 0 ;
+
+UPDATE test2_v1
+SET age = abs(age)
+WHERE `Sales Person` = 'Laurent';
+
+-- Corrected no minus value
+
+Select * 
+FROM test2_v1
