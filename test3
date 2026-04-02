@@ -1,0 +1,71 @@
+-- Standardizing data
+
+SELECT * 
+FROM test3;
+
+UPDATE test3
+SET Rep = 'John'
+WHERE Rep = 'JoHn';
+
+-- done
+
+SELECT * 
+FROM test3
+order by Rep;
+
+-- correcting Year 
+
+UPDATE test3
+SET Year = 2017
+WHERE `Ave Margin` = 1 AND Rep = 'Dafney';
+
+UPDATE test3
+SET Year = 2016
+WHERE `Ave Margin` = 1.25 AND Rep = 'John';
+
+
+SELECT Rep, `Ave Margin` as `2015`
+FROM test3
+WHERE Year = 2015;
+
+SELECT Rep, `Ave Margin` as `2016`
+FROM test3
+WHERE Year = 2016;
+
+SELECT Rep, `Ave Margin` as `2017`
+FROM test3
+WHERE Year = 2017;
+
+SELECT Rep,  `Ave Margin` as `2018`
+FROM test3
+WHERE Year = 2018;
+
+-- Joining tables
+
+SELECT 
+    t1.Rep,
+    t1.`Ave Margin` AS `2015`,
+    t2.`Ave Margin` AS `2016`,
+    t3.`Ave Margin` AS `2017`,
+    t4.`Ave Margin` AS `2018`
+FROM test3 t1
+LEFT JOIN test3 t2 ON t1.Rep = t2.Rep AND t2.Year = 2016
+LEFT JOIN test3 t3 ON t1.Rep = t3.Rep AND t3.Year = 2017
+LEFT JOIN test3 t4 ON t1.Rep = t4.Rep AND t4.Year = 2018
+WHERE t1.Year = 2015;
+
+-- Creating clean table
+
+CREATE TABLE test3_p2 as 
+SELECT 
+    t1.Rep,
+    t1.`Ave Margin` AS `2015`,
+    t2.`Ave Margin` AS `2016`,
+    t3.`Ave Margin` AS `2017`,
+    t4.`Ave Margin` AS `2018`
+FROM test3 t1
+LEFT JOIN test3 t2 ON t1.Rep = t2.Rep AND t2.Year = 2016
+LEFT JOIN test3 t3 ON t1.Rep = t3.Rep AND t3.Year = 2017
+LEFT JOIN test3 t4 ON t1.Rep = t4.Rep AND t4.Year = 2018
+WHERE t1.Year = 2015;
+
