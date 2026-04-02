@@ -1,0 +1,12 @@
+SELECT * FROM test4
+ORDER BY 1;
+
+-- fixing errors
+
+UPDATE test4
+SET year= 2017
+WHERE Rep = 'Dafney' AND Margin = 1;
+
+UPDATE test4
+SET year= 2016
+WHERE Rep = 'John' AND Margin = 1.25;
